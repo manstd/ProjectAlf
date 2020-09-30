@@ -24,7 +24,12 @@ async def transform(event):
         await event.edit("`reply to a image/sticker`")
         return
     await event.edit("`Downloading Media..`")
-    if (
+    if reply_message.photo:
+        transform = await bot.download_media(
+            reply_message,
+            "transform.png",
+        )
+    elif (
         DocumentAttributeFilename(file_name="AnimatedSticker.tgs")
         in reply_message.media.document.attributes
     ):
@@ -86,7 +91,12 @@ async def rotate(event):
         await event.edit("`reply to a image/sticker`")
         return
     await event.edit("`Downloading Media..`")
-    if (
+    if reply_message.photo:
+        rotate = await bot.download_media(
+            reply_message,
+            "transform.png",
+        )
+    elif (
         DocumentAttributeFilename(file_name="AnimatedSticker.tgs")
         in reply_message.media.document.attributes
     ):
