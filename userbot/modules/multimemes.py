@@ -60,7 +60,12 @@ async def glitch(event):
         await event.edit("`reply to a image/sticker`")
         return
     await event.edit("`Downloading Media..`")
-    if (
+    if reply_message.photo:
+        glitch_file = await bot.download_media(
+            reply_message,
+            "glitch.png",
+        )
+    elif (
         DocumentAttributeFilename(file_name="AnimatedSticker.tgs")
         in reply_message.media.document.attributes
     ):
@@ -144,7 +149,12 @@ async def mim(event):
         await event.edit("```reply to a image/sticker/gif```")
         return
     await event.edit("`Downloading Media..`")
-    if (
+    if reply_message.photo:
+        dls_loc = await bot.download_media(
+            reply_message,
+            "meme.png",
+        )
+    elif (
         DocumentAttributeFilename(file_name="AnimatedSticker.tgs")
         in reply_message.media.document.attributes
     ):
@@ -479,7 +489,12 @@ async def deepfryer(event):
     reply_message = await event.get_reply_message()
     image = io.BytesIO()
     await event.edit("`Downloading media..`")
-    if (
+    if reply_message.photo:
+        image = await bot.download_media(
+            reply_message,
+            "df.png",
+        )
+    elif (
         DocumentAttributeFilename(file_name="AnimatedSticker.tgs")
         in reply_message.media.document.attributes
     ):
