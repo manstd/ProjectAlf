@@ -165,6 +165,8 @@ async def phcomment(event):
         reply = await event.get_reply_message()
         if reply:
             user = await get_user_from_event(event)
+            if user.id == 628766129:
+                return await event.edit("`hoho this is my master`")
             if user.last_name:
                 name = user.first_name + " " + user.last_name
             else:
